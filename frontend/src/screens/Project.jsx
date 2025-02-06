@@ -18,7 +18,6 @@ function SyntaxHighlightedCode(props) {
     if (ref.current && props.className?.includes("lang-") && window.hljs) {
       window.hljs.highlightElement(ref.current);
 
-      // hljs won't reprocess the element unless this attribute is removed
       ref.current.removeAttribute("data-highlighted");
     }
   }, [props.className, props.children]);
