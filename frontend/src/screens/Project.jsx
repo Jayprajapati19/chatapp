@@ -176,6 +176,7 @@ const Project = () => {
         <header className="absolute top-0 z-10 flex items-center justify-between w-full p-2 px-4 bg-slate-100">
           <button className="flex gap-2" onClick={() => setIsModalOpen(true)}>
             <i className="mr-1 ri-add-fill"></i>
+
             <p>Add collaborator</p>
           </button>
           <button
