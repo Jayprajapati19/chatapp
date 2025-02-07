@@ -20,15 +20,25 @@ const Login = () => {
         password,
       })
       .then((res) => {
-        console.log(res.data);
+        if (res.data) {
+          console.log(res.data);
 
-        localStorage.setItem("token", res.data.token);
-        setUser(res.data.user);
+          localStorage.setItem("token", res.data.token);
+          setUser(res.data.user);
 
-        navigate("/");
+          navigate("/");
+        } else {
+          console.log("No response data");
+        }
       })
       .catch((err) => {
-        console.log(err.response.data);
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log("Connection refused");
+        } else {
+          console.log("Error", err.message);
+        }
       });
   };
 
