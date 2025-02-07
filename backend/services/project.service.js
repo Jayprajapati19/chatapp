@@ -140,3 +140,34 @@ export const updateFileTree = async ({ projectId, fileTree }) => {
 
   return project;
 };
+
+export const deleteProject = async ({ projectId, userId }) => {
+  if (!projectId) {
+    throw new Error("projectId is required");
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(projectId)) {
+    throw new Error("Invalid projectId");
+  }
+
+  if (!userId) {
+    throw new Error("userId is required");
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    throw new Error("Invalid userId");
+  }
+
+  const project = await projectModel.findOne({
+    _id: projectId,
+    users: userId,
+  });
+
+  if (!project) {
+    throw new Error("User not belong to this project");
+  }
+
+  await projectModel.deleteOne({ _id: projectId });
+
+  return { message: "Project deleted successfully" };
+};

@@ -27,6 +27,7 @@ function SyntaxHighlightedCode(props) {
 
 const Project = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -164,6 +165,18 @@ const Project = () => {
       });
   }
 
+  const deleteProject = () => {
+    axios
+      .delete(`/projects/delete/${project._id}`)
+      .then((res) => {
+        console.log(res.data);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   // Removed appendIncomingMessage and appendOutgoingMessage functions
 
   function scrollToBottom() {
@@ -179,12 +192,17 @@ const Project = () => {
 
             <p>Add collaborator</p>
           </button>
-          <button
-            onClick={() => setIsSidePanelOpen(!isSidePanelOpen)}
-            className="p-2"
-          >
-            <i className="ri-group-fill"></i>
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setIsSidePanelOpen(!isSidePanelOpen)}
+              className="p-2"
+            >
+              <i className="ri-group-fill"></i>
+            </button>
+            <button onClick={deleteProject} className="p-2">
+              <i className="ri-delete-bin-line"></i>
+            </button>
+          </div>
         </header>
         <div className="relative flex flex-col flex-grow h-full pb-10 conversation-area pt-14">
           <div
