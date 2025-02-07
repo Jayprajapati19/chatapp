@@ -362,6 +362,7 @@ const Project = () => {
               </button>
             </div>
           </div>
+
           <div className="flex flex-grow max-w-full overflow-auto bottom shrink">
             {fileTree[currentFile] && (
               <div className="flex-grow h-full overflow-auto bg-gray-700 code-editor-area">
