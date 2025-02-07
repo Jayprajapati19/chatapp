@@ -8,8 +8,11 @@ import {
   receiveMessage,
   sendMessage,
 } from "../config/socket";
+
 import Markdown from "markdown-to-jsx";
+
 import hljs from "highlight.js";
+
 import { getWebContainer } from "../config/webcontainer";
 
 function SyntaxHighlightedCode(props) {
