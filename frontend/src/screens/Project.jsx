@@ -39,7 +39,7 @@ const Project = () => {
   const messageBox = React.createRef();
 
   const [users, setUsers] = useState([]);
-  const [messages, setMessages] = useState([]); // New state variable for messages
+  const [messages, setMessages] = useState([]);
   const [fileTree, setFileTree] = useState({});
 
   const [currentFile, setCurrentFile] = useState(null);
