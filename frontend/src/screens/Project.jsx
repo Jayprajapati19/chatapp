@@ -431,5 +431,3 @@ const Project = () => {
 };
 
 export default Project;
-
-// 4:10
