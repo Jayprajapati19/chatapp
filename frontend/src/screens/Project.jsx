@@ -185,8 +185,8 @@ const Project = () => {
 
   return (
     <main className="flex w-screen h-screen">
-      <section className="relative flex flex-col h-screen left min-w-96 bg-slate-300">
-        <header className="absolute top-0 z-10 flex items-center justify-between w-full p-2 px-4 bg-slate-100">
+      <section className="relative flex flex-col h-screen bg-gray-800 left min-w-96">
+        <header className="absolute top-0 z-10 flex items-center justify-between w-full p-2 px-4 bg-gray-700">
           <button className="flex gap-2" onClick={() => setIsModalOpen(true)}>
             <i className="mr-1 ri-add-fill"></i>
 
@@ -216,9 +216,11 @@ const Project = () => {
                   msg.sender._id === "ai" ? "max-w-80" : "max-w-52"
                 } ${
                   msg.sender._id == user._id.toString() && "ml-auto"
-                }  message flex flex-col p-2 bg-slate-50 w-fit rounded-md`}
+                }  message flex flex-col p-2 bg-gray-600 w-fit rounded-md`}
               >
-                <small className="text-xs opacity-65">{msg.sender.email}</small>
+                <small className="text-xs text-gray-300 opacity-65">
+                  {msg.sender.email}
+                </small>
                 <div className="text-sm">
                   {msg.sender._id === "ai" ? (
                     WriteAiMessage(msg.message)
@@ -234,39 +236,41 @@ const Project = () => {
             <input
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="flex-grow p-2 px-4 border-none outline-none"
+              className="flex-grow p-2 px-4 text-white bg-gray-700 border-none outline-none"
               type="text"
               placeholder="Enter message"
             />
-            <button onClick={send} className="px-5 text-white bg-slate-950">
+            <button onClick={send} className="px-5 text-white bg-blue-500">
               <i className="ri-send-plane-fill"></i>
             </button>
           </div>
         </div>
         <div
-          className={`sidePanel w-full h-full flex flex-col gap-2 bg-slate-50 absolute transition-all ${
+          className={`sidePanel w-full h-full flex flex-col gap-2 bg-gray-700 absolute transition-all ${
             isSidePanelOpen ? "translate-x-0" : "-translate-x-full"
           } top-0`}
         >
-          <header className="flex items-center justify-between p-2 px-4 bg-slate-200">
-            <h1 className="text-lg font-semibold">Collaborators</h1>
+          <header className="flex items-center justify-between p-2 px-4 bg-gray-600">
+            <h1 className="text-lg font-semibold text-white">Collaborators</h1>
 
             <button
               onClick={() => setIsSidePanelOpen(!isSidePanelOpen)}
               className="p-2"
             >
-              <i className="ri-close-fill"></i>
+              <i className="text-white ri-close-fill"></i>
             </button>
           </header>
           <div className="flex flex-col gap-2 users">
             {project.users &&
               project.users.map((user) => {
                 return (
-                  <div className="flex items-center gap-2 p-2 cursor-pointer user hover:bg-slate-200">
-                    <div className="flex items-center justify-center p-5 text-white rounded-full aspect-square w-fit h-fit bg-slate-600">
+                  <div className="flex items-center gap-2 p-2 cursor-pointer user hover:bg-gray-600">
+                    <div className="flex items-center justify-center p-5 text-white bg-gray-500 rounded-full aspect-square w-fit h-fit">
                       <i className="absolute ri-user-fill"></i>
                     </div>
-                    <h1 className="text-lg font-semibold">{user.email}</h1>
+                    <h1 className="text-lg font-semibold text-white">
+                      {user.email}
+                    </h1>
                   </div>
                 );
               })}
@@ -274,8 +278,8 @@ const Project = () => {
         </div>
       </section>
 
-      <section className="flex flex-grow h-full right bg-red-50">
-        <div className="h-full explorer max-w-64 min-w-52 bg-slate-200">
+      <section className="flex flex-grow h-full bg-gray-800 right">
+        <div className="h-full bg-gray-700 explorer max-w-64 min-w-52">
           <div className="w-full file-tree">
             {Object.keys(fileTree).map((file, index) => (
               <button
@@ -284,9 +288,9 @@ const Project = () => {
                   setCurrentFile(file);
                   setOpenFiles([...new Set([...openFiles, file])]);
                 }}
-                className="flex items-center w-full gap-2 p-2 px-4 cursor-pointer tree-element bg-slate-300"
+                className="flex items-center w-full gap-2 p-2 px-4 bg-gray-600 cursor-pointer tree-element"
               >
-                <p className="text-lg font-semibold">{file}</p>
+                <p className="text-lg font-semibold text-white">{file}</p>
               </button>
             ))}
           </div>
@@ -299,11 +303,11 @@ const Project = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentFile(file)}
-                  className={`open-file cursor-pointer p-2 px-4 flex items-center w-fit gap-2 bg-slate-300 ${
-                    currentFile === file ? "bg-slate-400" : ""
+                  className={`open-file cursor-pointer p-2 px-4 flex items-center w-fit gap-2 bg-gray-600 ${
+                    currentFile === file ? "bg-gray-500" : ""
                   }`}
                 >
-                  <p className="text-lg font-semibold">{file}</p>
+                  <p className="text-lg font-semibold text-white">{file}</p>
                 </button>
               ))}
             </div>
@@ -348,7 +352,7 @@ const Project = () => {
                     setIframeUrl(url);
                   });
                 }}
-                className="p-2 px-4 text-white bg-slate-300"
+                className="p-2 px-4 text-white bg-blue-500"
               >
                 run
               </button>
@@ -356,7 +360,7 @@ const Project = () => {
           </div>
           <div className="flex flex-grow max-w-full overflow-auto bottom shrink">
             {fileTree[currentFile] && (
-              <div className="flex-grow h-full overflow-auto code-editor-area bg-slate-50">
+              <div className="flex-grow h-full overflow-auto bg-gray-700 code-editor-area">
                 <pre className="h-full hljs">
                   <code
                     className="h-full outline-none hljs"
@@ -400,7 +404,7 @@ const Project = () => {
                 type="text"
                 onChange={(e) => setIframeUrl(e.target.value)}
                 value={iframeUrl}
-                className="w-full p-2 px-4 bg-slate-200"
+                className="w-full p-2 px-4 text-white bg-gray-600"
               />
             </div>
             <iframe src={iframeUrl} className="w-full h-full"></iframe>
@@ -410,34 +414,36 @@ const Project = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative max-w-full p-4 bg-white rounded-md w-96">
+          <div className="relative max-w-full p-4 bg-gray-700 rounded-md w-96">
             <header className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">Select User</h2>
+              <h2 className="text-xl font-semibold text-white">Select User</h2>
               <button onClick={() => setIsModalOpen(false)} className="p-2">
-                <i className="ri-close-fill"></i>
+                <i className="text-white ri-close-fill"></i>
               </button>
             </header>
             <div className="flex flex-col gap-2 mb-16 overflow-auto users-list max-h-96">
               {users.map((user) => (
                 <div
                   key={user.id}
-                  className={`user cursor-pointer hover:bg-slate-200 ${
+                  className={`user cursor-pointer hover:bg-gray-600 ${
                     Array.from(selectedUserId).indexOf(user._id) != -1
-                      ? "bg-slate-200"
+                      ? "bg-gray-600"
                       : ""
                   } p-2 flex gap-2 items-center`}
                   onClick={() => handleUserClick(user._id)}
                 >
-                  <div className="relative flex items-center justify-center p-5 text-white rounded-full aspect-square w-fit h-fit bg-slate-600">
+                  <div className="relative flex items-center justify-center p-5 text-white bg-gray-500 rounded-full aspect-square w-fit h-fit">
                     <i className="absolute ri-user-fill"></i>
                   </div>
-                  <h1 className="text-lg font-semibold">{user.email}</h1>
+                  <h1 className="text-lg font-semibold text-white">
+                    {user.email}
+                  </h1>
                 </div>
               ))}
             </div>
             <button
               onClick={addCollaborators}
-              className="absolute px-4 py-2 text-white transform -translate-x-1/2 bg-blue-600 rounded-md bottom-4 left-1/2"
+              className="absolute px-4 py-2 text-white transform -translate-x-1/2 bg-blue-500 rounded-md bottom-4 left-1/2"
             >
               Add Collaborators
             </button>
