@@ -46,6 +46,7 @@ const Project = () => {
   const [fileTree, setFileTree] = useState({});
 
   const [currentFile, setCurrentFile] = useState(null);
+
   const [openFiles, setOpenFiles] = useState([]);
 
   const [webContainer, setWebContainer] = useState(null);
