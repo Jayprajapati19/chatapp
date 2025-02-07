@@ -24,17 +24,14 @@ const model = genAI.getGenerativeModel({
 
                 const app = express();
 
-
                 app.get('/', (req, res) => {
                     res.send('Hello World!');
                 });
-
 
                 app.listen(3000, () => {
                     console.log('Server is running on port 3000');
                 })
                 "
-            
         },
     },
 
@@ -57,16 +54,9 @@ const model = genAI.getGenerativeModel({
                         "express": "^4.21.2"
                     }
 }
-
-                
                 "
-                
-                
-
             },
-
         },
-
     },
     "buildCommand": {
         mainItem: "npm",
@@ -80,23 +70,23 @@ const model = genAI.getGenerativeModel({
 }
 
     user:Create an express application 
-   
+
     </example>
 
 
     
-       <example>
+    <example>
 
-       user:Hello 
-       response:{
-       "text":"Hello, How can I help you today?"
-       }
-       
-       </example>
+    user:Hello 
+    response:{
+    "text":"Hello, How can I help you today?"
+    }
     
- IMPORTANT : don't use file name like routes/index.js
-       
-       
+    </example>
+    
+IMPORTANT : don't use file name like routes/index.js
+
+
     `,
 });
 
